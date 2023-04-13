@@ -12,7 +12,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<String> _boxState = <String>['', '', '', '', '', '', '', '', ''];
+  List<String> _boxState = List<String>.filled(9, '');
   bool _xTurn = Random().nextBool();
   String _whoWon = '';
 
@@ -21,59 +21,63 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
-  void _checkIfSomeoneHasWon() {
+  void checkForWinner() {
     setState(() {});
-    // Checking rows
-    if (_boxState[0] == _boxState[1] && _boxState[0] == _boxState[2] && _boxState[0] != '') {
-      _whoWon = '${_boxState[0]} won!';
-    }
-    if (_boxState[3] == _boxState[4] && _boxState[3] == _boxState[5] && _boxState[3] != '') {
-      _whoWon = '${_boxState[3]} won!';
-    }
-    if (_boxState[6] == _boxState[7] && _boxState[6] == _boxState[8] && _boxState[6] != '') {
-      _whoWon = '${_boxState[6]} won!';
+
+    // Check rows
+    for (int i = 0; i < 9; i += 3) {
+      if (_boxState[i].isNotEmpty && _boxState[i] == _boxState[i + 1] && _boxState[i] == _boxState[i + 2]) {
+        _whoWon = '${_boxState[i]} won!';
+        return;
+      }
     }
 
-    // Checking Column
-    if (_boxState[0] == _boxState[3] && _boxState[0] == _boxState[6] && _boxState[0] != '') {
-      _whoWon = '${_boxState[0]} won!';
-    }
-    if (_boxState[1] == _boxState[4] && _boxState[1] == _boxState[7] && _boxState[1] != '') {
-      _whoWon = '${_boxState[1]} won!';
-    }
-    if (_boxState[2] == _boxState[5] && _boxState[2] == _boxState[8] && _boxState[2] != '') {
-      _whoWon = '${_boxState[2]} won!';
+    // Check columns
+    for (int i = 0; i < 3; i++) {
+      if (_boxState[i].isNotEmpty && _boxState[i] == _boxState[i + 3] && _boxState[i] == _boxState[i + 6]) {
+        _whoWon = '${_boxState[i]} won!';
+        return;
+      }
     }
 
-    // Checking Diagonal
-    if (_boxState[0] == _boxState[4] && _boxState[0] == _boxState[8] && _boxState[0] != '') {
+    // Check diagonals
+    if (_boxState[0].isNotEmpty && _boxState[0] == _boxState[4] && _boxState[0] == _boxState[8]) {
       _whoWon = '${_boxState[0]} won!';
+      return;
     }
-    if (_boxState[2] == _boxState[4] && _boxState[2] == _boxState[6] && _boxState[2] != '') {
+    if (_boxState[2].isNotEmpty && _boxState[2] == _boxState[4] && _boxState[2] == _boxState[6]) {
       _whoWon = '${_boxState[2]} won!';
-    } else if (!_boxState.contains('')) {
+      return;
+    }
+
+    // Check for tie
+    if (!_boxState.contains('')) {
       _whoWon = 'Tie!';
     }
-    setState(() {});
   }
 
-  void _tapped(int index) {
-    setState(() {
-      if (_whoWon == '') {
-        if (_xTurn && _boxState[index] == '') {
-          _boxState[index] = 'Pink';
-          _xTurn = false;
-        } else if (!_xTurn && _boxState[index] == '') {
-          _boxState[index] = 'Blue';
-          _xTurn = true;
-        }
-        _checkIfSomeoneHasWon();
-      }
-    });
+  void tapped(int index) {
+    if (_whoWon != '') {
+      return; // Return early if there's already a winner
+    }
+
+    if (_boxState[index] != '') {
+      return; // Return early if the box is already taken
+    }
+
+    if (_xTurn) {
+      _boxState[index] = 'Pink';
+    } else {
+      _boxState[index] = 'Blue';
+    }
+
+    _xTurn = !_xTurn; // Switch the turn to the other player
+    checkForWinner(); // Check if anyone has won
+    setState(() {}); // Update the UI
   }
 
   void _refresh() {
-    _boxState = <String>['', '', '', '', '', '', '', '', ''];
+    _boxState = List<String>.filled(9, '');
     _xTurn = Random().nextBool();
     _whoWon = '';
     setState(() {});
@@ -84,8 +88,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         appBar: AppBar(title: Text(widget.title)),
         body: Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: <Widget>[
-          Text(_whoWon=='' ? "Pink's turn\n$_whoWon" : _whoWon,
-              style: TextStyle(color: _xTurn == true || _whoWon!='' ? Colors.pinkAccent : Colors.white, fontSize: 38),
+          Text(_whoWon == '' ? "Pink's turn\n$_whoWon" : _whoWon,
+              style: TextStyle(color: _xTurn == true || _whoWon != '' ? Colors.pinkAccent : Colors.white, fontSize: 38),
               textAlign: TextAlign.center),
           TextButton(
               onPressed: _whoWon.contains('Pink') || _whoWon.contains('Tie') ? _refresh : null,
@@ -102,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
                     onTap: () {
-                      _tapped(index);
+                      tapped(index);
                     },
                     child: Container(
                         decoration: BoxDecoration(border: Border.all()),
@@ -122,9 +126,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       ? MaterialStateProperty.all(Colors.red)
                       : null),
               child: Text('Reset',
-                  style: TextStyle(color: _whoWon.contains('Blue') || _whoWon.contains('Tie') ? Colors.black : Colors.white, fontSize: 32))),
-          Text(_whoWon=='' ? "Blue's turn\n$_whoWon" : _whoWon,
-              style: TextStyle(color: _xTurn == false || _whoWon!='' ? Colors.cyanAccent : Colors.white, fontSize: 38), textAlign: TextAlign.center)
+                  style: TextStyle(
+                      color: _whoWon.contains('Blue') || _whoWon.contains('Tie') ? Colors.black : Colors.white,
+                      fontSize: 32))),
+          Text(_whoWon == '' ? "Blue's turn\n$_whoWon" : _whoWon,
+              style:
+                  TextStyle(color: _xTurn == false || _whoWon != '' ? Colors.cyanAccent : Colors.white, fontSize: 38),
+              textAlign: TextAlign.center)
         ]));
   }
 }
