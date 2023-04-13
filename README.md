@@ -8,10 +8,5 @@ Perks:
 * can't change game situation after someone wins
 * firs player is selected randomly
 
-[Demo View](https://www.youtube.com/shorts/yWJAar3X9MU)
-
-
-
-
 https://user-images.githubusercontent.com/67558003/231797901-f156ab4e-dfc9-4032-8976-a5e17760c19a.mp4
 
