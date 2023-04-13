@@ -9,4 +9,4 @@ Perks:
 * firs player is selected randomly
 
 
-[![Watch the video](https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Tic_tac_toe.svg/800px-Tic_tac_toe.svg.png)(https://youtube.com/shorts/yWJAar3X9MU)
+[![Watch the video](https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Tic_tac_toe.svg/800px-Tic_tac_toe.svg.png)](https://youtube.com/shorts/yWJAar3X9MU)
