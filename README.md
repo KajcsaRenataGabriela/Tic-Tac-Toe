@@ -9,3 +9,7 @@ Perks:
 * firs player is selected randomly
 
 [Demo View](https://www.youtube.com/shorts/yWJAar3X9MU)
+
+<iframe width="420"  height="315"  
+src="https://www.youtube.com/shorts/yWJAar3X9MU">  
+</iframe>
