@@ -8,5 +8,4 @@ Perks:
 * can't change game situation after someone wins
 * firs player is selected randomly
 
-
-[![Video]([https://img.youtube.com/vi/VIDEO_ID/0.jpg](https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Tic_tac_toe.svg/800px-Tic_tac_toe.svg.png))]((https://youtube.com/shorts/yWJAar3X9MU) "Video")
+https://youtube.com/shorts/yWJAar3X9MU?feature=share
