@@ -11,11 +11,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Tic Tac Toe',
-      theme: ThemeData(
-        primarySwatch: Colors.pink,
-      ),
-      home: const MyHomePage(title: 'Tic Tac Toe')
-    );
+        title: 'Tic Tac Toe',
+        theme: ThemeData(
+          primarySwatch: Colors.pink,
+        ),
+        home: const MyHomePage(title: 'Tic Tac Toe'));
   }
 }
