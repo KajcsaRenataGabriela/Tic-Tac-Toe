@@ -88,17 +88,22 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         appBar: AppBar(title: Text(widget.title)),
         body: Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: <Widget>[
-          Text(_whoWon == '' ? "Pink's turn\n$_whoWon" : _whoWon,
-              style: TextStyle(color: _xTurn == true || _whoWon != '' ? Colors.pinkAccent : Colors.white, fontSize: 38),
-              textAlign: TextAlign.center),
-          TextButton(
-              onPressed: _whoWon.contains('Pink') || _whoWon.contains('Tie') ? _refresh : null,
-              style: ButtonStyle(
-                  backgroundColor: _whoWon.contains('Pink') || _whoWon.contains('Tie')
-                      ? MaterialStateProperty.all(Colors.red)
-                      : null),
-              child: Text(_whoWon.contains('Pink') || _whoWon.contains('Tie') ? 'Reset' : '',
-                  style: const TextStyle(color: Colors.black, fontSize: 32))),
+          RotatedBox(
+              quarterTurns: 2,
+              child: Text(_whoWon == '' ? "Pink's turn\n$_whoWon" : _whoWon,
+                  style: TextStyle(
+                      color: _xTurn == true || _whoWon != '' ? Colors.pinkAccent : Colors.white, fontSize: 38),
+                  textAlign: TextAlign.center)),
+          RotatedBox(
+              quarterTurns: 2,
+              child: TextButton(
+                  onPressed: _whoWon.contains('Pink') || _whoWon.contains('Tie') ? _refresh : null,
+                  style: ButtonStyle(
+                      backgroundColor: _whoWon.contains('Pink') || _whoWon.contains('Tie')
+                          ? MaterialStateProperty.all(Colors.red)
+                          : null),
+                  child: Text(_whoWon.contains('Pink') || _whoWon.contains('Tie') ? 'Reset' : '',
+                      style: const TextStyle(color: Colors.black, fontSize: 32)))),
           GridView.builder(
               shrinkWrap: true,
               itemCount: 9,
