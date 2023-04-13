@@ -8,4 +8,4 @@ Perks:
 * can't change game situation after someone wins
 * firs player is selected randomly
 
-[![Video Title](https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Tic_tac_toe.svg/800px-Tic_tac_toe.svg.png)]([https://www.youtube.com/watch?v=VIDEO_ID](https://youtube.com/shorts/yWJAar3X9MU) "Tic Tac Toe")
+[Tic Tac Toe]([https://www.youtube.com/watch?v=VIDEO_ID](https://www.youtube.com/shorts/yWJAar3X9MU))
