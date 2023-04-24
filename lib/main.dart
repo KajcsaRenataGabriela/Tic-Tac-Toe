@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Tic Tac Toe',
         theme: ThemeData(
-          primarySwatch: Colors.pink,
+          primarySwatch: Colors.pink
         ),
         home: const MyHomePage(title: 'Tic Tac Toe'));
   }
