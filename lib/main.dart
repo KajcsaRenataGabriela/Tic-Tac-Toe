@@ -12,9 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Tic Tac Toe',
-        theme: ThemeData(
-          primarySwatch: Colors.pink
-        ),
+        theme: ThemeData(primarySwatch: Colors.pink),
         home: const MyHomePage(title: 'Tic Tac Toe'));
   }
 }

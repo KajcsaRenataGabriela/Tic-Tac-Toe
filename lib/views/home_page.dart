@@ -22,8 +22,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void checkForWinner() {
-    setState(() {});
-
     // Check rows
     for (int i = 0; i < 9; i += 3) {
       if (_boxState[i].isNotEmpty && _boxState[i] == _boxState[i + 1] && _boxState[i] == _boxState[i + 2]) {
